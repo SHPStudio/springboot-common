@@ -1,0 +1,59 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.0.RELEASE'
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group 'com.shapestudio'
+version '1.0-SNAPSHOT'
+def ARTIFACTID= "sprintboot-common"
+
+sourceCompatibility = 1.8
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // springboot基础包
+    implementation('org.springframework.boot:spring-boot-starter')
+    implementation('org.springframework.boot:spring-boot-starter-web')
+
+    // 工具包
+    implementation('org.apache.commons:commons-lang3:3.4')
+    implementation('org.projectlombok:lombok')
+    implementation('com.alibaba:fastjson:1.2.28')
+    implementation('com.google.guava:guava:21.0')
+}
+
+uploadArchives {
+    configuration = configurations.archives
+    repositories {
+        mavenDeployer {
+            pom.project {
+                version version
+                artifactId ARTIFACTID
+                groupId "com.shapestudio"
+                packaging "jar"
+                description "springboot dev common jar"
+            }
+        }
+    }
+}
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+artifacts {
+    archives jar
+    archives sourcesJar
+}
