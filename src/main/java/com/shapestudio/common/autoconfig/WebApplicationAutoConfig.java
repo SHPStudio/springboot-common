@@ -1,5 +1,6 @@
 package com.shapestudio.common.autoconfig;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import com.shapestudio.common.interceptor.CorsInterceptor;
 import com.shapestudio.common.interceptor.DefaultCorsInterceptor;
@@ -11,6 +12,8 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplicat
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Optional;
@@ -91,6 +94,17 @@ public class WebApplicationAutoConfig {
                 return null;
             }
 
+        }
+    }
+
+    /**
+     * 探活url
+     */
+    @RestController
+    public static class HealthController {
+        @RequestMapping("/health")
+        public String health() {
+            return "hello";
         }
     }
 }

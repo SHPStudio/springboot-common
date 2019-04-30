@@ -28,6 +28,7 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-configuration-processor')
     compile('org.springframework.boot:spring-boot-starter')
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-aop')
 
     // 工具包
     compile('org.apache.commons:commons-lang3:3.4')
