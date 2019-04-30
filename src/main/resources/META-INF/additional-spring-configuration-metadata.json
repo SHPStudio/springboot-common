@@ -1,0 +1,22 @@
+{
+  "properties": [
+    {
+      "name": "shape.cors.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.shapestudio.common.autoconfig.WebApplicationAutoConfig",
+      "description": "是否开启cors跨域"
+    },
+    {
+      "name": "shape.except.login.urls",
+      "type": "java.lang.String",
+      "sourceType": "com.shapestudio.common.autoconfig.WebApplicationAutoConfig",
+      "description": "如果有自定义的登录拦截器，可使用该属性排除不需要登录拦截的url，用逗号分隔"
+    },
+    {
+      "name": "shape.except.cors.urls",
+      "type": "java.lang.String",
+      "sourceType": "com.shapestudio.common.autoconfig.WebApplicationAutoConfig",
+      "description": "如果开启了cors跨域，可使用该属性排除不需要跨域的url，用逗号分隔"
+    }
+  ]
+}

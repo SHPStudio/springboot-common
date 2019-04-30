@@ -1,3 +1,4 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.shapestudio.common.autoconfig.WebApplicationAutoConfig
+com.shapestudio.common.autoconfig.WebApplicationAutoConfig,\
+  com.shapestudio.common.autoconfig.WebAdminAutoConfig
