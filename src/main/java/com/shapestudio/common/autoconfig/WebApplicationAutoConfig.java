@@ -1,7 +1,8 @@
 package com.shapestudio.common.autoconfig;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
+import com.shapestudio.common.exception.GlobalExceptionResolver;
+import com.shapestudio.common.filter.RequestFilter;
 import com.shapestudio.common.interceptor.CorsInterceptor;
 import com.shapestudio.common.interceptor.DefaultCorsInterceptor;
 import com.shapestudio.common.interceptor.LoginInterceptor;
@@ -9,13 +10,18 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -95,6 +101,30 @@ public class WebApplicationAutoConfig {
             }
 
         }
+
+//        /**
+//         * 增加自定义异常处理
+//         * @param resolvers
+//         */
+//        @Override
+//        public void extendHandlerExceptionResolvers(List<HandlerExceptionResolver> resolvers) {
+//            resolvers.add(new GlobalExceptionResolver());
+//        }
+    }
+
+    /**
+     * 使用filter解决request的流只能读取一次的问题
+     * @return
+     */
+    @Bean
+    public FilterRegistrationBean httpServletRequestReplacedRegistration() {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(new RequestFilter());
+        registration.addUrlPatterns("/*");
+        registration.addInitParameter("paramName", "paramValue");
+        registration.setName("httpServletRequestReplacedFilter");
+        registration.setOrder(1);
+        return registration;
     }
 
     /**
@@ -104,7 +134,7 @@ public class WebApplicationAutoConfig {
     public static class HealthController {
         @RequestMapping("/health")
         public String health() {
-            return "hello";
+            return "ok";
         }
     }
 }

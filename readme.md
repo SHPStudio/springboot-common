@@ -48,3 +48,24 @@
   1. apache-common通用工具类
   2. guava工具类
   3. fastjson工具类
+
+### 性能日志
+  `@Performance` 在方法或者类上加入该注解，将会打印调用该方法耗时日志(warn级别)，后期可能会使用内存数据库存储，方便查询
+
+### 异常日志
+  `@LogException` 在方法或者类上加入该注解，将会在(debug级别)输出入参和出参，在调用异常时(error级别)打印错误日志
+
+### Controller层通用异常处理
+  controller可以不需要try catch处理，统一会进行处理，目前只处理resultful形式的接口异常。
+  1. controller接口返回值是否属于集合，如果是集合返回前端空数组
+  2.
+
+### 配置文件加密
+  放在`security.properties`配置文件下的属性值将会被解密
+
+### 默认日志配置
+  如果没有配置`logging.config`的话，就会在配置中默认加入本jar包的日志配置。
+  1. 默认输出日志文件路径 `/export/log/spring.log`
+  2. 输出异常日志文件路径 `/export/log/except.log`
+  3. 输出性能日志文件路径 `/export/log/performance.log`
+  4. 输出controller异常日志文件路径 `/export/log/url-except.log`
