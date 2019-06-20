@@ -12,7 +12,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.shapestudio'
-version '1.0-SNAPSHOT'
+version '1.1-SNAPSHOT'
 def ARTIFACTID= "springboot-common"
 
 sourceCompatibility = 1.8
@@ -63,4 +63,12 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives jar
     archives sourcesJar
+}
+sourceSets {
+    main {
+        resources {
+            //可以将java目录下的所有非.java资源打包到classes下
+            srcDirs = ['src/main/java', 'src/main/resources']
+        }
+    }
 }
