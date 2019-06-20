@@ -6,11 +6,13 @@ import com.shapestudio.common.filter.RequestFilter;
 import com.shapestudio.common.interceptor.CorsInterceptor;
 import com.shapestudio.common.interceptor.DefaultCorsInterceptor;
 import com.shapestudio.common.interceptor.LoginInterceptor;
+import com.shapestudio.common.util.ApplicationContextUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.error.DefaultErrorAttributes;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -125,6 +127,24 @@ public class WebApplicationAutoConfig {
         registration.setName("httpServletRequestReplacedFilter");
         registration.setOrder(1);
         return registration;
+    }
+
+    /**
+     * 通用错误处理
+     * @return
+     */
+    @Bean
+    public DefaultErrorAttributes globalExceptionResolver() {
+        return new GlobalExceptionResolver();
+    }
+
+    /**
+     * application工具类
+     * @return
+     */
+    @Bean
+    public ApplicationContextUtil applicationContextUtil() {
+        return new ApplicationContextUtil();
     }
 
     /**

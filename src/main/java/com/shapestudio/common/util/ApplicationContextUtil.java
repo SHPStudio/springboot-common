@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 /**
  * Application工具类
  */
-@Component
 public class ApplicationContextUtil implements ApplicationContextAware  {
 
     private static ApplicationContext staticApplicationContext;

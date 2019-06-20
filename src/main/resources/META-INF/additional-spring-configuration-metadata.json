@@ -17,6 +17,18 @@
       "type": "java.lang.String",
       "sourceType": "com.shapestudio.common.autoconfig.WebApplicationAutoConfig",
       "description": "如果开启了cors跨域，可使用该属性排除不需要跨域的url，用逗号分隔"
+    },
+    {
+      "name": "shape.aop.logexception.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.shapestudio.common.autoconfig.WebAopAutoConfig",
+      "description": "是否开启错误日志记录，如果不开启那么@LogException注解将不生效"
+    },
+    {
+      "name": "shape.aop.performance.enable",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.shapestudio.common.autoconfig.WebAopAutoConfig",
+      "description": "是否开启性能日志记录，如果不开启那么@Performance注解将不生效"
     }
   ]
 }

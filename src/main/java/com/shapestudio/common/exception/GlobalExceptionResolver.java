@@ -31,7 +31,6 @@ import java.util.*;
  * 通用异常处理
  */
 @Slf4j
-@Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class GlobalExceptionResolver extends DefaultErrorAttributes {
 
@@ -43,10 +42,6 @@ public class GlobalExceptionResolver extends DefaultErrorAttributes {
 
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        // 计时
-        StopWatch stopWatch = new StopWatch();
-        stopWatch.start();
-
         // 必须要初始化并返回 要不response没有效果
         ModelAndView modelAndView = new ModelAndView();
 
@@ -98,8 +93,6 @@ public class GlobalExceptionResolver extends DefaultErrorAttributes {
         } catch (IOException e) {
             // ignore
         }
-        stopWatch.stop();
-        System.out.println(stopWatch.getTotalTimeSeconds() + "秒");
         return modelAndView;
     }
 
